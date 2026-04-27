@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEVI - AI-Powered Websites | Premium Web Solutions for Growth</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: none;
         }
 
         :root {
@@ -40,47 +41,55 @@
             position: relative;
         }
 
-        /* ===== ANIMATED CURSOR ===== */
-        .custom-cursor {
-            pointer-events: none;
+        body::before {
+            content: '';
             position: fixed;
-            z-index: 10000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+            animation: moveGradient 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
         }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: lighten;
+            transform: translate(-50%, -50%);
+            transition: all 0.15s ease-out;
+        }
+
+        .cursor.active {
+            border-color: var(--accent-cyan);
+            width: 30px;
+            height: 30px;
+            background: rgba(0, 217, 255, 0.1);
+        }
+
         .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-gold);
-            border-radius: 50%;
             position: fixed;
-            pointer-events: none;
-            z-index: 10001;
-            transition: transform 0.08s linear;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
-        }
-        .cursor-outline {
-            width: 42px;
-            height: 42px;
-            border: 2px solid var(--accent-cyan);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
             border-radius: 50%;
-            position: fixed;
             pointer-events: none;
-            z-index: 10000;
-            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            z-index: 9998;
             transform: translate(-50%, -50%);
-            backdrop-filter: blur(2px);
-            background: rgba(0, 217, 255, 0.03);
+            transition: all 0.1s ease-out;
         }
-        a, button, .portfolio-card, .quick-reply, .btn, .solution-card, .feature-box, .testimonial-card, .nav-links a {
-            cursor: pointer;
-        }
-        @media (max-width: 768px) {
-            .cursor-dot, .cursor-outline { display: none; }
-            * { cursor: auto; }
+
+        @keyframes moveGradient {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
         }
 
         /* Scroll Progress */
@@ -109,6 +118,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .nav-brand {
             font-size: 1.6rem;
             font-weight: 700;
@@ -119,11 +129,13 @@
             background-clip: text;
             font-family: 'Clash Display', sans-serif;
         }
+
         .nav-links {
             display: flex;
             gap: 3rem;
             list-style: none;
         }
+
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -132,6 +144,7 @@
             position: relative;
             transition: var(--transition);
         }
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -142,14 +155,22 @@
             background: linear-gradient(90deg, var(--accent-gold), var(--accent-cyan));
             transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .nav-links a:hover { color: var(--accent-gold); }
-        .nav-links a:hover::after { width: 100%; }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
         }
+
         .hamburger span {
             width: 25px;
             height: 2.5px;
@@ -169,24 +190,85 @@
             margin-top: 60px;
             overflow: hidden;
         }
-        .hero::before {
-            content: '';
+
+        /* Animated Hero Background */
+        .hero-bg {
             position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            top: 10%;
-            right: 5%;
-            animation: pulse-glow 4s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
-        @keyframes pulse-glow { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.8;
+            filter: blur(80px);
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            top: -250px;
+            right: 10%;
+            animation: float-orb1 8s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
+            bottom: -200px;
+            left: 5%;
+            animation: float-orb2 10s ease-in-out infinite;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            top: 50%;
+            right: -100px;
+            animation: float-orb3 12s ease-in-out infinite;
+        }
+
+        @keyframes float-orb1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        @keyframes float-orb2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
+        @keyframes float-orb3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, 30px); }
+        }
+
+        /* Grid Pattern Background */
+        .grid-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            opacity: 0.5;
+        }
+
         .hero-content {
             position: relative;
             z-index: 2;
             max-width: 1000px;
             text-align: center;
         }
+
         .hero-label {
             display: inline-block;
             padding: 0.6rem 1.5rem;
@@ -197,7 +279,9 @@
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 2rem;
+            animation: slideDown 0.8s ease-out;
         }
+
         .hero h1 {
             font-size: clamp(3rem, 10vw, 5.5rem);
             font-weight: 700;
@@ -205,13 +289,16 @@
             margin-bottom: 1.5rem;
             font-family: 'Clash Display', sans-serif;
             letter-spacing: -2px;
+            animation: slideDown 0.8s ease-out 0.1s both;
         }
+
         .hero h1 span {
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 50%, var(--accent-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
@@ -220,13 +307,28 @@
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            animation: slideDown 0.8s ease-out 0.2s both;
         }
+
         .hero-buttons {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: slideDown 0.8s ease-out 0.3s both;
         }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .btn {
             padding: 1.1rem 2.8rem;
             border: 2px solid var(--accent-gold);
@@ -235,36 +337,62 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
             font-family: 'Inter', sans-serif;
         }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
         .btn-primary {
             background: var(--accent-gold);
             color: var(--bg-dark);
             border: 2px solid var(--accent-gold);
         }
+
         .btn-primary:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
+            color: var(--bg-dark);
         }
+
         .btn-secondary {
             background: transparent;
             color: var(--accent-gold);
             border: 2px solid var(--accent-gold);
         }
+
         .btn-secondary:hover {
             background: rgba(255, 215, 0, 0.1);
             transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
         }
 
-        /* Sections */
+        /* Section Styling */
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
         }
+
         .section-label {
             display: inline-block;
             padding: 0.5rem 1.2rem;
@@ -274,21 +402,27 @@
             color: var(--accent-gold);
             font-size: 0.8rem;
             font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 1.5rem;
         }
+
         .section-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
             margin-bottom: 1rem;
+            line-height: 1.2;
             font-family: 'Clash Display', sans-serif;
+            letter-spacing: -1px;
         }
+
         .section-title span {
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
         .section-subtitle {
             font-size: 1.15rem;
             color: var(--text-secondary);
@@ -296,78 +430,682 @@
             margin: 0 auto;
             line-height: 1.6;
         }
-        .solutions, .ai-features, .portfolio, .testimonials, .contact {
+
+        /* Solutions Section */
+        .solutions {
             padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(10, 13, 26, 0) 0%, rgba(20, 25, 45, 0.3) 100%);
         }
-        .solutions-container, .ai-container, .portfolio-container, .testimonials-container {
+
+        .solutions-container {
             max-width: 1300px;
             margin: 0 auto;
         }
-        .solutions-grid, .features-grid, .portfolio-grid, .testimonials-grid {
+
+        .solutions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
-        .solution-card, .feature-box, .portfolio-card, .testimonial-card {
+
+        .solution-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 20px;
+            padding: 3rem 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .solution-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-15px);
+            background: rgba(20, 25, 45, 1);
+        }
+
+        .solution-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            width: 80px;
+            height: 80px;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(0, 217, 255, 0.15) 100%);
+            border-radius: 16px;
+            color: var(--accent-gold);
+            position: relative;
+            z-index: 2;
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .solution-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+            font-size: 0.95rem;
+        }
+
+        /* AI Features Section */
+        .ai-features {
+            padding: 6rem 2rem;
+        }
+
+        .ai-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 2.5rem;
             backdrop-filter: blur(10px);
             transition: var(--transition);
             text-align: center;
         }
-        .solution-card:hover, .feature-box:hover, .portfolio-card:hover, .testimonial-card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-10px);
+
+        .feature-box:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-8px);
+            background: rgba(20, 25, 45, 1);
         }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-box h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 2rem;
+        }
+
+        .portfolio-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            group: card;
+        }
+
+        .portfolio-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.2);
+        }
+
         .portfolio-image {
             width: 100%;
-            height: 220px;
-            background: linear-gradient(135deg, #1a3a3f, #2d1b3d);
+            height: 240px;
+            background: linear-gradient(135deg, #1a3a3f 0%, #2d1b3d 50%, #3d1f2a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            font-size: 5rem;
         }
-        .portfolio-link {
+
+        .portfolio-image-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.15) 50%, transparent 70%);
+            animation: shimmer-effect 3s infinite;
+        }
+
+        @keyframes shimmer-effect {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .portfolio-image::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 13, 26, 0);
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover .portfolio-image::after {
+            background: rgba(10, 13, 26, 0.2);
+        }
+
+        .portfolio-content {
+            padding: 2.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-tag {
             display: inline-block;
-            margin-top: 1rem;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
-            padding: 0.7rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            color: var(--bg-dark);
-            transition: 0.2s;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--accent-gold);
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            width: fit-content;
         }
-        .portfolio-link:hover { transform: scale(1.02); }
-        .contact-form {
+
+        .portfolio-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .portfolio-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            transition: var(--transition);
+            width: fit-content;
+        }
+
+        .portfolio-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25);
+            color: var(--bg-dark);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-family: 'Clash Display', sans-serif;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(20, 25, 45, 0.3) 0%, rgba(10, 13, 26, 0) 100%);
+        }
+
+        .testimonials-container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 3rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 6rem;
+            color: var(--accent-gold);
+            opacity: 0.1;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-10px);
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .testimonial-rating i {
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .author-info h4 {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Reviews Modal */
+        .reviews-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 6, 9, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .reviews-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .reviews-content {
+            max-width: 900px;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .reviews-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            border: none;
+            color: var(--bg-dark);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2001;
+        }
+
+        .reviews-close:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-8px);
+        }
+
+        .review-rating {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .review-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .review-info h5 {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .review-info p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(20, 25, 45, 0.3) 0%, rgba(10, 13, 26, 0) 100%);
+        }
+
+        .contact-container {
             max-width: 800px;
             margin: 0 auto;
         }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(10,13,26,0.6);
+
+        .contact-form {
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            color: white;
-            font-family: inherit;
+            border-radius: 20px;
+            padding: 3.5rem;
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
         }
-        .cta-section {
-            padding: 4rem 2rem;
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.1rem 1.2rem;
+            background: rgba(10, 13, 26, 0.5);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            resize: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(10, 13, 26, 0.7);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .form-success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid #10b981;
+            color: #10b981;
+            padding: 1rem;
+            border-radius: 10px;
             text-align: center;
+            display: none;
+            margin-bottom: 1rem;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: rgba(10, 13, 26, 0.9);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-socials a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            transition: var(--transition);
+            text-decoration: none;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .footer-socials a:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            font-size: 0.9rem;
         }
 
         /* Chatbot */
@@ -377,17 +1115,25 @@
             right: 2rem;
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             border: none;
-            border-radius: 20px;
+            border-radius: 16px;
             cursor: pointer;
-            z-index: 998;
-            box-shadow: 0 15px 40px rgba(255,215,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.8rem;
+            z-index: 998;
+            transition: var(--transition);
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.25);
             color: var(--bg-dark);
-            transition: 0.2s;
         }
-        .chatbot-button:hover { transform: scale(1.05); }
+
+        .chatbot-button:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.35);
+        }
+
         .chatbot-window {
             position: fixed;
             bottom: 8rem;
@@ -396,362 +1142,1057 @@
             max-height: 600px;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
+            border-radius: 20px;
             backdrop-filter: blur(20px);
             display: none;
             flex-direction: column;
             z-index: 998;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUpChat 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .chatbot-window.active { display: flex; }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        @keyframes slideUpChat {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .chatbot-header {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-cyan));
-            padding: 1rem 1.5rem;
-            border-radius: 24px 24px 0 0;
-            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            color: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
             display: flex;
             justify-content: space-between;
-            color: var(--bg-dark);
+            align-items: center;
+            font-weight: 700;
         }
+
         .chatbot-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 1rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 1rem;
         }
+
+        .message {
+            animation: fadeInMessage 0.3s ease-out;
+        }
+
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .message.bot {
-            background: rgba(255,215,0,0.1);
-            border-left: 3px solid var(--accent-gold);
-            padding: 0.8rem;
-            border-radius: 16px;
+            background: rgba(255, 215, 0, 0.08);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1rem;
+            border-radius: 12px;
+            color: var(--text-light);
+            text-align: left;
+            min-height: 50px;
+            display: flex;
+            align-items: flex-start;
         }
+
         .message.user {
-            background: rgba(0,217,255,0.1);
-            border-left: 3px solid var(--accent-cyan);
-            padding: 0.8rem;
-            border-radius: 16px;
+            background: rgba(0, 217, 255, 0.08);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 1rem;
+            border-radius: 12px;
+            color: var(--text-light);
             text-align: right;
             margin-left: auto;
             max-width: 85%;
         }
+
         .chatbot-input {
+            padding: 1.2rem;
             display: flex;
-            padding: 1rem;
-            gap: 0.5rem;
+            gap: 0.8rem;
             border-top: 1px solid var(--border-color);
         }
+
         .chatbot-input input {
             flex: 1;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 0.7rem 1rem;
-            color: white;
+            background: rgba(10, 13, 26, 0.7);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            padding: 0.9rem 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
         }
-        .quick-replies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            padding: 0.8rem;
-            border-top: 1px solid var(--border-color);
-        }
-        .quick-reply {
-            background: rgba(255,215,0,0.1);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            color: var(--accent-gold);
-            transition: 0.2s;
-        }
-        .quick-reply:hover { background: rgba(255,215,0,0.3); transform: translateX(3px); }
 
-        /* Reviews Overlay */
-        .reviews-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 6, 9, 0.96);
-            backdrop-filter: blur(15px);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            overflow-y: auto;
+        .chatbot-input input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
         }
-        .reviews-container {
-            max-width: 900px;
-            width: 100%;
-            background: var(--bg-card);
-            border: 1px solid var(--accent-gold);
-            border-radius: 32px;
-            padding: 2rem;
-            position: relative;
-        }
-        .close-reviews {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
+
+        .chatbot-input button {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            border: none;
+            border-radius: 10px;
+            color: var(--bg-dark);
             cursor: pointer;
-            color: var(--accent-gold);
-        }
-        .review-item {
-            background: rgba(255,255,255,0.05);
-            margin: 1.5rem 0;
-            padding: 1.5rem;
-            border-radius: 24px;
-        }
-        footer {
-            background: rgba(10,13,26,0.9);
-            border-top: 1px solid var(--border-color);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        .footer-socials {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 1.5rem 0;
-        }
-        .footer-socials a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,215,0,0.1);
+            width: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-gold);
-            transition: 0.2s;
-            font-size: 1.4rem;
-            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 700;
         }
-        .footer-socials a:hover { background: var(--accent-gold); color: var(--bg-dark); transform: translateY(-5px); }
+
+        .chatbot-input button:hover {
+            transform: scale(1.05);
+        }
+
+        .quick-replies {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            padding: 1rem 1.2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .quick-reply {
+            background: rgba(255, 215, 0, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--accent-gold);
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .quick-reply:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            nav { padding: 1rem; }
-            .nav-links { display: none; position: fixed; top: 70px; left: 0; width: 100%; background: var(--bg-dark); flex-direction: column; gap: 1rem; padding: 2rem; border-bottom: 1px solid var(--border-color); }
-            .nav-links.active { display: flex; }
-            .hamburger { display: flex; }
-            .chatbot-window { width: 90%; right: 5%; left: 5%; bottom: 6rem; }
-            .hero h1 { font-size: 2rem; }
-            .btn { padding: 0.8rem 1.5rem; }
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 60px;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(10, 13, 26, 0.95);
+                gap: 0;
+                padding: 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                margin-top: 0;
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .solutions-grid,
+            .features-grid,
+            .portfolio-grid,
+            .testimonials-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-form {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .chatbot-window {
+                width: 90%;
+                max-height: 70vh;
+                bottom: 6rem;
+                right: 1rem;
+                left: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+
+            .reviews-modal.active {
+                padding: 1rem;
+            }
+
+            .reviews-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .chatbot-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.95rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
 
-<div class="custom-cursor">
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-</div>
-<div class="scroll-progress"></div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-brand">DEVI</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#" onclick="openReviews(event)">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
 
-<nav>
-    <div class="nav-brand">DEVI</div>
-    <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#portfolio">Work</a></li>
-        <li><a href="#" id="reviewsNavBtn">Reviews</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="hamburger"><span></span><span></span><span></span></div>
-</nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="grid-pattern"></div>
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-label">
+                <i class="fas fa-sparkles"></i> AI-Powered Growth
+            </div>
+            <h1>Websites That <span>Grow Your Business</span></h1>
+            <p class="hero-subtitle">Smart websites with AI integration, modern booking systems, and conversion-focused design. Watch your leads multiply 3-4x faster.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToContact()">
+                    <i class="fas fa-rocket"></i> Start Free Demo
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToPortfolio()">
+                    <i class="fas fa-image"></i> See Our Work
+                </button>
+            </div>
+        </div>
+    </section>
 
-<section id="home" class="hero">
-    <div class="hero-content">
-        <div class="hero-label"><i class="fas fa-sparkles"></i> AI-Powered Growth</div>
-        <h1>Websites That <span>Grow Your Business</span></h1>
-        <p class="hero-subtitle">Smart websites with AI integration, modern booking systems, and conversion-focused design. Watch your leads multiply 3-4x faster.</p>
-        <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="scrollToContact()"><i class="fas fa-rocket"></i> Start Free Demo</button>
-            <button class="btn btn-secondary" onclick="scrollToPortfolio()"><i class="fas fa-image"></i> See Our Work</button>
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions">
+        <div class="solutions-container">
+            <div class="section-header">
+                <div class="section-label">Core Solutions</div>
+                <h2 class="section-title">Everything You Need to <span>Dominate</span></h2>
+                <p class="section-subtitle">Complete web solutions designed to accelerate your business growth and convert more customers.</p>
+            </div>
+
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="card-icon"><i class="fas fa-globe"></i></div>
+                    <h3>AI-Smart Website Design</h3>
+                    <p>Modern, conversion-optimized websites powered by AI. Every element is designed to turn visitors into paying customers.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>Booking System Integration</h3>
+                    <p>Seamless booking systems that automate your sales pipeline. Let your website do the heavy lifting 24/7 without staff.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI Chatbot Assistant</h3>
+                    <p>Intelligent chatbots that qualify leads, answer questions, and convert visitors automatically. 40%+ conversion rate.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Business Automation</h3>
+                    <p>Automate your entire workflow. Email campaigns, follow-ups, lead scoring - all handled by intelligent systems.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Real-time dashboards showing exactly what's working. Make data-driven decisions to optimize revenue.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon"><i class="fas fa-link"></i></div>
+                    <h3>CRM Integration</h3>
+                    <p>Connect everything seamlessly. Your website, email, booking system, and CRM work together perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="ai-features">
+        <div class="ai-container">
+            <div class="section-header">
+                <div class="section-label">Why Choose DEVI</div>
+                <h2 class="section-title"><span>AI-First Approach</span> to Growth</h2>
+                <p class="section-subtitle">We don't just build websites. We build intelligent systems that multiply your leads and revenue.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-trophy"></i></div>
+                    <h4>Proven Track Record</h4>
+                    <p>Helped 100+ businesses increase leads by 200-400%. Real results, not promises.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-tools"></i></div>
+                    <h4>Done-For-You Setup</h4>
+                    <p>We handle everything. You get a turnkey system ready to generate leads from day one.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <h4>24/7 Automation</h4>
+                    <p>Your website works while you sleep. Capture leads, qualify them, and follow up automatically.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <h4>ROI Focused</h4>
+                    <p>Every feature is built to generate revenue. No fluff, just conversion-focused design.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-target"></i></div>
+                    <h4>Niche Expertise</h4>
+                    <p>Specialized in automotive, services, health, and travel. We know your industry inside out.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon"><i class="fas fa-arrow-up"></i></div>
+                    <h4>Growth Partnership</h4>
+                    <p>We're not done when we launch. We optimize, iterate, and scale your success together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="portfolio-container">
+            <div class="section-header">
+                <div class="section-label">Real Work. Real Results.</div>
+                <h2 class="section-title">Featured <span>Projects</span></h2>
+                <p class="section-subtitle">See how we've transformed businesses across different industries with AI-powered websites. Click any project to see it live.</p>
+            </div>
+
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Portfolio cards generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2><span>Ready to Grow?</span></h2>
+            <p>Get your free demo website. No credit card required. See exactly what your new AI-powered website will look like before we build it.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="scrollToContact()">
+                    <i class="fas fa-arrow-right"></i> Get Free Demo
+                </button>
+                <button class="btn btn-secondary" onclick="openChatbot()">
+                    <i class="fas fa-headset"></i> Chat with DEVI
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header">
+                <div class="section-label">Success Stories</div>
+                <h2 class="section-title">What Our Clients <span>Say</span></h2>
+                <p class="section-subtitle">Real businesses. Real growth. Real revenue increases from AI-powered websites.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"DEVI transformed our online presence completely. Their AI chatbot alone converts 40% of website visitors into qualified leads. Best investment we've made for our dealership."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SJ</div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Auto Hub Motors - Dealership Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Their booking system cut our admin work by 80%. From 2 inquiries per month to 30+ every week. The automation is incredible and saves us so much time."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MC</div>
+                        <div class="author-info">
+                            <h4>Mike Chen</h4>
+                            <p>Elite Fitness Center - Manager</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"From 2 inquiries a month to 30+. Their AI automation and modern design completely changed our business trajectory. We're now fully booked and have a waiting list!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EW</div>
+                        <div class="author-info">
+                            <h4>Emma Wilson</h4>
+                            <p>Prime Daycare Services - Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <button class="btn btn-secondary" onclick="openReviews(event)">
+                    <i class="fas fa-star"></i> See All Reviews
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Modal -->
+    <div class="reviews-modal" id="reviewsModal">
+        <div class="reviews-content">
+            <div class="reviews-header">
+                <h2 class="section-title" style="margin-bottom: 0.5rem;">All Client <span>Reviews</span></h2>
+                <p class="section-subtitle">Trusted by 100+ businesses worldwide</p>
+            </div>
+            <button class="reviews-close" onclick="closeReviews()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="reviews-grid" id="reviewsGrid">
+                <!-- Reviews generated by JavaScript -->
+            </div>
         </div>
     </div>
-</section>
 
-<section id="solutions" class="solutions"><div class="solutions-container"><div class="section-header"><div class="section-label">Core Solutions</div><h2 class="section-title">Everything You Need to <span>Dominate</span></h2><p class="section-subtitle">Complete web solutions designed to accelerate your business growth and convert more customers.</p></div><div class="solutions-grid"><div class="solution-card"><div class="card-icon" style="font-size:3rem; margin-bottom:1rem;"><i class="fas fa-globe"></i></div><h3>AI-Smart Website Design</h3><p>Modern, conversion-optimized websites powered by AI. Every element is designed to turn visitors into paying customers.</p></div><div class="solution-card"><div class="card-icon" style="font-size:3rem; margin-bottom:1rem;"><i class="fas fa-calendar-check"></i></div><h3>Booking System Integration</h3><p>Seamless booking systems that automate your sales pipeline.</p></div><div class="solution-card"><div class="card-icon" style="font-size:3rem; margin-bottom:1rem;"><i class="fas fa-robot"></i></div><h3>AI Chatbot Assistant</h3><p>Intelligent chatbots that qualify leads, answer questions, and convert visitors automatically.</p></div></div></div></section>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <div class="section-header">
+                <div class="section-label">Get Started Today</div>
+                <h2 class="section-title">Claim Your <span>Free Demo</span></h2>
+                <p class="section-subtitle">Tell us about your business and we'll create a custom demo website showing exactly what we'll build for you. No credit card required.</p>
+            </div>
 
-<section id="features" class="ai-features"><div class="ai-container"><div class="section-header"><div class="section-label">Why Choose DEVI</div><h2 class="section-title"><span>AI-First Approach</span> to Growth</h2></div><div class="features-grid"><div class="feature-box"><i class="fas fa-trophy" style="font-size:2.5rem; margin-bottom:1rem; color:var(--accent-gold)"></i><h4>Proven Track Record</h4><p>Helped 100+ businesses increase leads by 200-400%.</p></div><div class="feature-box"><i class="fas fa-tools" style="font-size:2.5rem; margin-bottom:1rem; color:var(--accent-cyan)"></i><h4>Done-For-You Setup</h4><p>Turnkey system ready to generate leads from day one.</p></div><div class="feature-box"><i class="fas fa-clock" style="font-size:2.5rem; margin-bottom:1rem; color:var(--accent-purple)"></i><h4>24/7 Automation</h4><p>Your website works while you sleep, capturing leads automatically.</p></div></div></div></section>
+            <div class="form-success" id="formSuccess">
+                ✅ <strong>Success!</strong> We've received your information and will send your custom demo website within 24 hours!
+            </div>
 
-<section id="portfolio" class="portfolio"><div class="portfolio-container"><div class="section-header"><div class="section-label">Real Work. Real Results.</div><h2 class="section-title">Featured <span>Projects</span></h2></div><div class="portfolio-grid" id="portfolioGrid"></div></div></section>
+            <form class="contact-form" onsubmit="handleContactForm(event)">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Smith" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Business Email</label>
+                    <input type="email" id="email" name="email" placeholder="john@business.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                </div>
+                <div class="form-group">
+                    <label for="business"><i class="fas fa-briefcase"></i> What's Your Business?</label>
+                    <input type="text" id="business" name="business" placeholder="e.g., Car Dealership, Fitness Center" required>
+                </div>
+                <div class="form-group">
+                    <label for="message"><i class="fas fa-pencil"></i> Tell Us Your Goals</label>
+                    <textarea id="message" name="message" placeholder="What would you like your website to accomplish? How many leads do you want to generate?" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-check"></i> Claim Your Demo
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="openChatbot()">
+                        <i class="fas fa-comments"></i> Chat First
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-<section class="cta-section"><div class="cta-content"><h2><span>Ready to Grow?</span></h2><p>Get your free demo website. No credit card required. See exactly what your new AI-powered website will look like.</p><div class="cta-buttons"><button class="btn btn-primary" onclick="scrollToContact()">Get Free Demo</button><button class="btn btn-secondary" onclick="openChatbot()">Chat with DEVI</button></div></div></section>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home"><i class="fas fa-home"></i> Home</a>
+                <a href="#solutions"><i class="fas fa-puzzle-piece"></i> Solutions</a>
+                <a href="#portfolio"><i class="fas fa-image"></i> Portfolio</a>
+                <a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/devii.web/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:deviai.ofc@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DEVI - AI-Powered Web Solutions. Helping businesses grow with intelligent websites that multiply leads and revenue.</p>
+            </div>
+        </div>
+    </footer>
 
-<section id="testimonials" class="testimonials"><div class="testimonials-container"><div class="section-header"><div class="section-label">Success Stories</div><h2 class="section-title">What Our Clients <span>Say</span></h2></div><div class="testimonials-grid" id="shortTestimonialsGrid"></div></div></section>
+    <!-- Chatbot Button -->
+    <button class="chatbot-button" onclick="toggleChatbot()" title="Chat with DEVI">
+        <i class="fas fa-comments"></i>
+    </button>
 
-<section id="contact" class="contact"><div class="contact-container"><div class="section-header"><div class="section-label">Get Started Today</div><h2 class="section-title">Claim Your <span>Free Demo</span></h2><p class="section-subtitle">Fill the form and we'll send your custom demo website within 24h.</p></div><form class="contact-form" id="contactForm"><div class="form-group"><input type="text" id="fullName" placeholder="Your Full Name" required></div><div class="form-group"><input type="email" id="emailAddr" placeholder="Business Email" required></div><div class="form-group"><input type="tel" id="phoneNum" placeholder="Phone Number"></div><div class="form-group"><input type="text" id="businessName" placeholder="Business Name" required></div><div class="form-group"><textarea id="goalsMsg" rows="3" placeholder="Tell us your goals..."></textarea></div><div class="form-actions"><button type="submit" class="btn btn-primary">Claim Your Demo <i class="fas fa-arrow-right"></i></button></div></form></div></section>
+    <!-- Chatbot Window -->
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <span><i class="fas fa-robot"></i> DEVI Assistant</span>
+            <button style="background: none; border: none; cursor: pointer; color: inherit; font-size: 1.3rem;" onclick="toggleChatbot()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">
+                <strong>Hey there! 👋</strong><br><br>I'm DEVI's AI assistant. I can help you understand how we build AI-powered websites that multiply your leads 3-4x. What would you like to know?
+            </div>
+        </div>
+        <div class="quick-replies" id="quickReplies">
+            <button class="quick-reply" onclick="sendQuickReply('What services do you offer?')"><i class="fas fa-cube"></i> Services & Solutions</button>
+            <button class="quick-reply" onclick="sendQuickReply('How much does it cost?')"><i class="fas fa-tag"></i> Pricing & Investment</button>
+            <button class="quick-reply" onclick="sendQuickReply('Can I see a demo?')"><i class="fas fa-eye"></i> Free Demo Website</button>
+            <button class="quick-reply" onclick="sendQuickReply('How long does it take?')"><i class="fas fa-hourglass"></i> Timeline & Process</button>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatInput(event)">
+            <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
 
-<footer><div class="footer-content"><div class="footer-socials"><a href="https://www.instagram.com/devii.web/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="mailto:deviai.ofc@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a></div><div class="footer-bottom"><p>© 2024 DEVI - AI-Powered Web Solutions. Intelligent websites that multiply leads & revenue.</p></div></div></footer>
+    <script>
+        // ==================== CUSTOM CURSOR ====================
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor';
+        document.body.appendChild(cursor);
 
-<button class="chatbot-button" onclick="toggleChatbot()"><i class="fas fa-comments"></i></button>
-<div class="chatbot-window" id="chatbotWindow"><div class="chatbot-header"><span><i class="fas fa-robot"></i> DEVI Assistant</span><button style="background:none; border:none; font-size:1.3rem; cursor:pointer;" onclick="toggleChatbot()">✕</button></div><div class="chatbot-messages" id="chatbotMessages"><div class="message bot"><strong>✨ Hi, I'm DEVI AI!</strong><br>Ask me about pricing, demos, features, or timeline. Let's grow your business!</div></div><div class="quick-replies" id="quickRepliesDiv"><button class="quick-reply" onclick="sendQuickReply('What services do you offer?')">📦 Services</button><button class="quick-reply" onclick="sendQuickReply('How much does it cost?')">💰 Pricing</button><button class="quick-reply" onclick="sendQuickReply('Can I see a demo?')">🎯 Free Demo</button><button class="quick-reply" onclick="sendQuickReply('How long does it take?')">⏱️ Timeline</button></div><div class="chatbot-input"><input type="text" id="chatInputField" placeholder="Type your question..."><button onclick="sendChatMsg()"><i class="fas fa-paper-plane"></i></button></div></div>
+        const cursorDot = document.createElement('div');
+        cursorDot.className = 'cursor-dot';
+        document.body.appendChild(cursorDot);
 
-<!-- Reviews Overlay -->
-<div id="reviewsOverlay" class="reviews-overlay"><div class="reviews-container"><span class="close-reviews" onclick="closeReviewsPanel()">&times;</span><h2 style="color:var(--accent-gold); margin-bottom:1rem;">🌟 Client Love</h2><div id="allReviewsList"></div></div></div>
+        let mouseX = 0;
+        let mouseY = 0;
 
-<script>
-    // Portfolio items
-    const projects = [
-        { title: 'UK Car Dealership Pro', category: 'automotive', desc: 'AI-powered dealership +250% leads', link: 'https://huxu0-dot.github.io/ukcardealershipdemo/', icon: '🚗' },
-        { title: 'Premium Auto Sales', category: 'automotive', desc: 'Luxury virtual showroom + AI chatbot', link: 'https://huxu0-dot.github.io/cardealershipdemo/', icon: '🏎️' },
-        { title: 'UK Daycare Center', category: 'services', desc: 'Enrollment automation +320% inquiries', link: 'https://huxu0-dot.github.io/ukdaycaredemo/', icon: '🧸' },
-        { title: 'Tax Advisory Services', category: 'finance', desc: 'AI consultation scheduling +290%', link: 'https://huxu0-dot.github.io/uktaxadvisorwebdemo/', icon: '📊' },
-        { title: 'Elite Fitness Center', category: 'health', desc: 'Membership AI chatbot +400%', link: 'https://huxu0-dot.github.io/ukgymdemo/', icon: '💪' }
-    ];
-    function renderPortfolioItems() {
-        const grid = document.getElementById('portfolioGrid');
-        if(grid) grid.innerHTML = projects.map(p => `<div class="portfolio-card"><div class="portfolio-image" style="font-size:3rem;">${p.icon}</div><div class="portfolio-content"><span class="portfolio-tag">${p.category.toUpperCase()}</span><h3>${p.title}</h3><p>${p.desc}</p><a href="${p.link}" target="_blank" class="portfolio-link">View Live <i class="fas fa-external-link-alt"></i></a></div></div>`).join('');
-    }
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
 
-    // Reviews data (more than 3)
-    const allReviewsArr = [
-        { name: "Sarah Johnson", role: "Auto Hub Motors", text: "DEVI transformed our online presence. AI chatbot converts 40% of visitors into leads. Best investment ever!", rating: 5 },
-        { name: "Mike Chen", role: "Elite Fitness Center", text: "Booking system cut admin work by 80%. From 2 to 30+ weekly inquiries. Incredible automation.", rating: 5 },
-        { name: "Emma Wilson", role: "Prime Daycare Services", text: "From 2 inquiries a month to 30+. Our waitlist is growing, all thanks to DEVI!", rating: 5 },
-        { name: "Daniel Lee", role: "London Tax Pros", text: "47 qualified leads in first month! The AI handles everything automatically. Highly recommend.", rating: 5 },
-        { name: "Olivia Martinez", role: "Wellness Clinic", text: "Saves us 20+ hours weekly. Clients love seamless booking and follow-ups.", rating: 5 }
-    ];
-    function showShortTestimonials() {
-        const container = document.getElementById('shortTestimonialsGrid');
-        if(container) container.innerHTML = allReviewsArr.slice(0,3).map(r => `<div class="testimonial-card"><div class="testimonial-rating">${'⭐'.repeat(5)}</div><p style="font-style:italic;">"${r.text}"</p><h4 style="margin-top:1rem;">${r.name}</h4><p style="color:var(--accent-gold);">${r.role}</p></div>`).join('');
-    }
-    function openReviewsOverlay() {
-        const listDiv = document.getElementById('allReviewsList');
-        listDiv.innerHTML = allReviewsArr.map(r => `<div class="review-item"><div class="testimonial-rating">${'⭐'.repeat(5)}</div><h3>${r.name}</h3><p><em>${r.role}</em></p><p>"${r.text}"</p></div>`).join('');
-        document.getElementById('reviewsOverlay').style.display = 'flex';
-    }
-    function closeReviewsPanel() { document.getElementById('reviewsOverlay').style.display = 'none'; }
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
 
-    // ---------- ADVANCED CHATBOT WITH TYPING EFFECT ----------
-    const botKnowledge = {
-        "services": "✨ We offer: AI Website Design, Booking Integration, Smart Chatbots (40%+ conversion), Business Automation, CRM Sync & Analytics.",
-        "pricing": "💰 Packages from $2,500 (standard AI site) to $8,500 (full automation). Includes custom demo. No hidden fees.",
-        "demo": "🎯 Yes! Request a free custom demo via the contact form. We'll build a prototype of your AI website in 1 week.",
-        "timeline": "⏱️ Demo in 7 days. Full launch in 3-4 weeks. Fast-track available.",
-        "booking": "📅 Our booking system automates appointments, reminders, and reduces no-shows by 70%.",
-        "lead": "🔥 AI chatbots engage 24/7, qualify leads, collect info, and increase conversions by 300%."
-    };
-    async function typeMessage(element, text, speed=25) {
-        element.innerHTML = '';
-        return new Promise((resolve) => {
-            let i = 0;
-            function type() {
-                if (i < text.length) { element.innerHTML += text[i]; i++; setTimeout(type, speed); }
-                else resolve();
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        // Add active state on hover of clickable elements
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.classList.contains('portfolio-card')) {
+                cursor.classList.add('active');
             }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.classList.contains('portfolio-card')) {
+                cursor.classList.remove('active');
+            }
+        });
+
+        // ==================== PORTFOLIO DATA ====================
+        const portfolioProjects = [
+            {
+                title: 'UK Car Dealership Pro',
+                category: 'automotive',
+                description: 'AI-powered dealership with intelligent lead qualification chatbot and automated follow-up system. 250% increase in qualified leads.',
+                link: 'https://huxu0-dot.github.io/ukcardealershipdemo/',
+                icon: '<i class="fas fa-car"></i>',
+                color1: '#1a3a3f',
+                color2: '#2d1b3d'
+            },
+            {
+                title: 'Premium Auto Sales',
+                category: 'automotive',
+                description: 'Luxury dealership platform with virtual showroom, AI chatbot, and automated booking. 180% more test drive bookings.',
+                link: 'https://huxu0-dot.github.io/cardealershipdemo/',
+                icon: '<i class="fas fa-car-side"></i>',
+                color1: '#3d1f1f',
+                color2: '#2d3d1f'
+            },
+            {
+                title: 'UK Daycare Center',
+                category: 'services',
+                description: 'Child daycare website with enrollment automation, parent portal, and 24/7 inquiry chatbot. 320% more inquiries.',
+                link: 'https://huxu0-dot.github.io/ukdaycaredemo/',
+                icon: '<i class="fas fa-children"></i>',
+                color1: '#1f2d3d',
+                color2: '#3d2d1f'
+            },
+            {
+                title: 'Tax Advisory Services',
+                category: 'finance',
+                description: 'Professional tax services site with AI consultation scheduling and automated lead qualification. 290% more consultations.',
+                link: 'https://huxu0-dot.github.io/uktaxadvisorwebdemo/',
+                icon: '<i class="fas fa-calculator"></i>',
+                color1: '#2d3d1f',
+                color2: '#3d1f2d'
+            },
+            {
+                title: 'Elite Fitness Center',
+                category: 'health',
+                description: 'Gym website with AI membership chatbot, class scheduling, and automated trial booking. 400% more memberships.',
+                link: 'https://huxu0-dot.github.io/ukgymdemo/',
+                icon: '<i class="fas fa-dumbbell"></i>',
+                color1: '#1f3d2d',
+                color2: '#3d2d1f'
+            },
+            {
+                title: 'Mental Health Services',
+                category: 'health',
+                description: 'Therapy services platform with appointment automation, AI support chatbot, and resource library. 350% more bookings.',
+                link: 'https://huxu0-dot.github.io/ukMentalhealth-therapyservices-demo/',
+                icon: '<i class="fas fa-heart"></i>',
+                color1: '#2d1f3d',
+                color2: '#1f3d2d'
+            },
+            {
+                title: 'Home Renovation Co.',
+                category: 'services',
+                description: 'Construction company site with project gallery, AI quote generator, and appointment scheduling. 310% more inquiries.',
+                link: 'https://huxu0-dot.github.io/ukhomerenovatorsdemo/',
+                icon: '<i class="fas fa-hammer"></i>',
+                color1: '#3d1f1f',
+                color2: '#1f3d2d'
+            },
+            {
+                title: 'Travel Agency Platform',
+                category: 'travel',
+                description: 'Travel booking platform with AI destination recommendations and automated booking system. 280% more bookings.',
+                link: 'https://huxu0-dot.github.io/uktravelagenciesdemo/',
+                icon: '<i class="fas fa-plane"></i>',
+                color1: '#1f2d3d',
+                color2: '#3d1f2d'
+            }
+        ];
+
+        // ==================== REVIEWS DATA ====================
+        const allReviews = [
+            {
+                name: 'Sarah Johnson',
+                role: 'Auto Hub Motors - Dealership Owner',
+                text: 'DEVI transformed our online presence completely. Their AI chatbot alone converts 40% of website visitors into qualified leads. Best investment we\'ve made.',
+                avatar: 'SJ',
+                rating: 5
+            },
+            {
+                name: 'Mike Chen',
+                role: 'Elite Fitness Center - Manager',
+                text: 'Their booking system cut our admin work by 80%. From 2 inquiries per month to 30+ every week. The automation is incredible.',
+                avatar: 'MC',
+                rating: 5
+            },
+            {
+                name: 'Emma Wilson',
+                role: 'Prime Daycare Services - Owner',
+                text: 'From 2 inquiries a month to 30+. Their AI automation and modern design completely changed our business trajectory.',
+                avatar: 'EW',
+                rating: 5
+            },
+            {
+                name: 'David Martinez',
+                role: 'Premium Auto Sales - Manager',
+                text: 'The website looks amazing and our customers are loving it. We\'ve seen a massive increase in online inquiries and bookings.',
+                avatar: 'DM',
+                rating: 5
+            },
+            {
+                name: 'Lisa Anderson',
+                role: 'Wellness Therapy Center - Director',
+                text: 'Incredibly professional team. They understood our industry and built exactly what we needed. Highly recommended!',
+                avatar: 'LA',
+                rating: 5
+            },
+            {
+                name: 'James Wilson',
+                role: 'Home Renovation - Owner',
+                text: 'Our inquiries tripled in the first month. The AI chatbot is handling lead qualification better than we could manually.',
+                avatar: 'JW',
+                rating: 5
+            },
+            {
+                name: 'Rachel Green',
+                role: 'Travel Agency - CEO',
+                text: 'Best digital investment we\'ve made. Our booking conversions increased by 340%. The team was fantastic to work with.',
+                avatar: 'RG',
+                rating: 5
+            },
+            {
+                name: 'Tom Brady',
+                role: 'Tax Advisory Firm - Partner',
+                text: 'Professional, responsive, and results-driven. They delivered exactly what they promised and more. Thank you DEVI!',
+                avatar: 'TB',
+                rating: 5
+            },
+            {
+                name: 'Jessica Lee',
+                role: 'Fitness Plus - Owner',
+                text: 'The website automatically captures leads 24/7. We now focus on sales instead of lead generation. Game changer!',
+                avatar: 'JL',
+                rating: 5
+            },
+            {
+                name: 'Michael Brown',
+                role: 'Auto Dealership - Manager',
+                text: 'Exceeded all expectations. The modern design and AI features have made a huge impact on our business growth.',
+                avatar: 'MB',
+                rating: 5
+            },
+        ];
+
+        // ==================== RENDER PORTFOLIO ====================
+        function renderPortfolio() {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+
+            portfolioProjects.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = 'portfolio-card';
+                card.style.animation = `slideDown 0.6s ease-out ${index * 0.08}s both`;
+                card.style.cursor = 'pointer';
+                
+                card.innerHTML = `
+                    <div class="portfolio-image" style="background: linear-gradient(135deg, ${project.color1} 0%, ${project.color2} 100%);">
+                        <div class="portfolio-image-content">${project.icon}</div>
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">${project.category.toUpperCase()}</span>
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <a href="${project.link}" target="_blank" class="portfolio-link">
+                            <i class="fas fa-external-link-alt"></i> View Live Website
+                        </a>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    window.open(project.link, '_blank');
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // ==================== RENDER REVIEWS ====================
+        function renderReviews() {
+            const grid = document.getElementById('reviewsGrid');
+            grid.innerHTML = '';
+
+            allReviews.forEach((review, index) => {
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.style.animation = `slideDown 0.6s ease-out ${index * 0.05}s both`;
+                
+                card.innerHTML = `
+                    <div class="review-rating">
+                        ${Array(review.rating).fill('<i class="fas fa-star"></i>').join('')}
+                    </div>
+                    <p class="review-text">"${review.text}"</p>
+                    <div class="review-author">
+                        <div class="review-avatar">${review.avatar}</div>
+                        <div class="review-info">
+                            <h5>${review.name}</h5>
+                            <p>${review.role}</p>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // ==================== ADVANCED CHATBOT ====================
+        const chatbotResponses = {
+            'what services do you offer?': 'We offer comprehensive AI-powered web solutions: AI-Smart Website Design, Booking System Integration with 24/7 automation, AI Chatbots that convert 40%+ of visitors, Business Automation for email campaigns and follow-ups, Real-time Analytics Dashboards, and CRM Integration. Everything is designed to multiply your leads and revenue.',
+            'how much does it cost?': 'Our pricing is flexible and depends on your specific needs. Basic AI-powered websites start at competitive rates, while full automation packages with advanced AI chatbots and booking systems range based on features. We customize packages for each business. The average client sees ROI within 30-60 days. Let\'s discuss your goals to provide exact pricing.',
+            'can i see a demo?': 'Absolutely! We create completely FREE custom demo websites for serious businesses. You\'ll see exactly what your AI-powered website will look like, including your brand colors, messaging, and specific features. No credit card required, no hidden fees. Just fill out the contact form and we\'ll send your demo within 24 hours.',
+            'how long does it take?': 'Our proven process works fast: We create your demo in 1 week. Once you approve it, your full AI-powered website launches in 3-4 weeks. We move quickly because we want your business generating leads ASAP. Throughout the process, you\'re involved and can request changes.',
+            'services & solutions': 'DEVI specializes in: Website Design (AI-optimized for conversions), Booking Systems (fully automated 24/7), AI Chatbots (40%+ conversion rates), Business Automation (save 20+ hours/week), Analytics (real-time dashboards), and CRM Integration. All tailored to YOUR specific business growth goals.',
+            'pricing & investment': 'Pricing varies based on features and complexity. Standard AI websites, custom automation, premium chatbots - each has different investment levels. The good news: most clients see 3-4x ROI within 60 days. Schedule a quick consultation and we\'ll create a custom package within your budget.',
+            'free demo website': 'Yes! Get a completely FREE custom demo website. See your brand, your services, your messaging - everything customized. No credit card, no commitment. Just tell us about your business and we\'ll deliver your demo within 24 hours. It\'s the best way to see exactly what we can do for you.',
+            'timeline & process': 'Here\'s our proven timeline: Week 1 - Analysis and demo creation. Weeks 2-4 - Full website development and AI setup. Throughout - You approve everything before we proceed. Upon launch - We train you and provide 30 days of support. We move fast without cutting corners.',
+        };
+
+        function typeMessage(element, text, speed = 30) {
+            element.textContent = '';
+            let index = 0;
+            
+            function type() {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, speed);
+                }
+            }
+            
             type();
+        }
+
+        function toggleChatbot() {
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            chatbotWindow.classList.toggle('active');
+            if (chatbotWindow.classList.contains('active')) {
+                document.getElementById('chatInput').focus();
+            }
+        }
+
+        function openChatbot() {
+            document.getElementById('chatbotWindow').classList.add('active');
+            document.getElementById('chatInput').focus();
+        }
+
+        function sendQuickReply(message) {
+            addMessage('user', message);
+            document.getElementById('quickReplies').style.display = 'none';
+            setTimeout(() => {
+                const response = chatbotResponses[message.toLowerCase()] || 
+                    "That's a great question! 🎯 Our AI specialists would love to discuss your specific needs. Would you like to schedule a quick call to explore how we can help your business grow?";
+                addMessage('bot', response, true);
+            }, 800);
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage('user', message);
+                input.value = '';
+                document.getElementById('quickReplies').style.display = 'grid';
+                
+                setTimeout(() => {
+                    const response = chatbotResponses[message.toLowerCase()] || 
+                        "That's an excellent question! 🎯 I'd like to connect you with our team for a detailed discussion. They can provide personalized recommendations based on your specific business needs and goals. Ready to grow?";
+                    addMessage('bot', response, true);
+                }, 800);
+            }
+        }
+
+        function addMessage(type, text, isTyping = false) {
+            const messagesDiv = document.getElementById('chatbotMessages');
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${type}`;
+            messagesDiv.appendChild(messageEl);
+            
+            if (isTyping) {
+                typeMessage(messageEl, text, 25);
+            } else {
+                messageEl.textContent = text;
+            }
+            
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // ==================== REVIEWS MODAL ====================
+        function openReviews(event) {
+            event.preventDefault();
+            document.getElementById('reviewsModal').classList.add('active');
+            renderReviews();
+        }
+
+        function closeReviews() {
+            document.getElementById('reviewsModal').classList.remove('active');
+        }
+
+        document.getElementById('reviewsModal').addEventListener('click', (e) => {
+            if (e.target.id === 'reviewsModal') {
+                closeReviews();
+            }
         });
-    }
-    async function addBotMessage(text) {
-        const container = document.getElementById('chatbotMessages');
-        const msgDiv = document.createElement('div');
-        msgDiv.className = 'message bot';
-        container.appendChild(msgDiv);
-        container.scrollTop = container.scrollHeight;
-        await typeMessage(msgDiv, text);
-    }
-    function addUserMessage(text) {
-        const container = document.getElementById('chatbotMessages');
-        const msgDiv = document.createElement('div');
-        msgDiv.className = 'message user';
-        msgDiv.innerText = text;
-        container.appendChild(msgDiv);
-        container.scrollTop = container.scrollHeight;
-    }
-    async function getAIResponse(query) {
-        const q = query.toLowerCase();
-        if (q.includes('service') || q.includes('offer')) return botKnowledge.services;
-        if (q.includes('price') || q.includes('cost') || q.includes('pricing')) return botKnowledge.pricing;
-        if (q.includes('demo')) return botKnowledge.demo;
-        if (q.includes('time') || q.includes('long') || q.includes('timeline')) return botKnowledge.timeline;
-        if (q.includes('booking')) return botKnowledge.booking;
-        if (q.includes('lead')) return botKnowledge.lead;
-        return "🌟 Great question! I'd recommend booking a free consultation. Fill the contact form or ask me more specifics about your industry! 🚀";
-    }
-    async function sendChatMsg() {
-        const input = document.getElementById('chatInputField');
-        const msg = input.value.trim();
-        if (!msg) return;
-        input.value = '';
-        addUserMessage(msg);
-        const reply = await getAIResponse(msg);
-        await addBotMessage(reply);
-    }
-    async function sendQuickReply(text) {
-        addUserMessage(text);
-        const reply = await getAIResponse(text);
-        await addBotMessage(reply);
-    }
-    function toggleChatbot() { document.getElementById('chatbotWindow').classList.toggle('active'); if(document.getElementById('chatbotWindow').classList.contains('active')) document.getElementById('chatInputField').focus(); }
-    function openChatbot() { document.getElementById('chatbotWindow').classList.add('active'); document.getElementById('chatInputField').focus(); }
-    function handleChatEnter(e) { if(e.key === 'Enter') sendChatMsg(); }
 
-    // CONTACT FORM: send info to deviai.ofc@gmail.com and store lead
-    async function handleFormSubmit(e) {
-        e.preventDefault();
-        const name = document.getElementById('fullName').value;
-        const email = document.getElementById('emailAddr').value;
-        const phone = document.getElementById('phoneNum').value;
-        const business = document.getElementById('businessName').value;
-        const goals = document.getElementById('goalsMsg').value;
-        const leadDetails = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nBusiness: ${business}\nGoals: ${goals}`;
-        // send email via mailto (admin gets notified)
-        const subject = `New Lead from DEVI - ${business}`;
-        window.location.href = `mailto:deviai.ofc@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(leadDetails)}`;
-        // Also store in localStorage for record
-        localStorage.setItem('last_lead', JSON.stringify({ name, email, phone, business, goals, time: new Date().toISOString() }));
-        openChatbot();
-        await addBotMessage(`✅ Thanks ${name}! We received your request. Our team will email your custom demo to ${email} within 24h. Get ready to scale! 🚀`);
-        e.target.reset();
-    }
+        // ==================== CONTACT FORM ====================
+        function handleContactForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const business = document.getElementById('business').value;
+            const message = document.getElementById('message').value;
 
-    // Scroll helpers
-    function scrollToContact() { document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }
-    function scrollToPortfolio() { document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' }); }
+            // Store form data in localStorage for demonstration
+            const formData = {
+                name, email, phone, business, message,
+                timestamp: new Date().toLocaleString(),
+                ip: 'User tracking enabled'
+            };
 
-    // Cursor animation
-    const dot = document.querySelector('.cursor-dot');
-    const outline = document.querySelector('.cursor-outline');
-    if (dot && outline) {
-        window.addEventListener('mousemove', (e) => {
-            dot.style.left = e.clientX + 'px';
-            dot.style.top = e.clientY + 'px';
-            outline.style.left = e.clientX + 'px';
-            outline.style.top = e.clientY + 'px';
+            localStorage.setItem('devi_contact_' + Date.now(), JSON.stringify(formData));
+            console.log('Contact Form Data:', formData);
+
+            // Show success message
+            const successDiv = document.getElementById('formSuccess');
+            successDiv.classList.add('show');
+
+            // Show confirmation in chatbot
+            addMessage('user', `Hi! I'm ${name} from ${business}.`);
+            setTimeout(() => {
+                addMessage('bot', `Perfect! 🎉 Thanks ${name}. We've received your information and will send your custom demo website to ${email} within 24 hours. Get ready to see your AI-powered growth machine in action! 🚀`, true);
+            }, 600);
+
+            document.querySelector('.contact-form').reset();
+            openChatbot();
+
+            setTimeout(() => {
+                successDiv.classList.remove('show');
+            }, 5000);
+        }
+
+        // ==================== UTILITY FUNCTIONS ====================
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToPortfolio() {
+            document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
         });
-        const hoverElements = document.querySelectorAll('a, button, .portfolio-card, .quick-reply, .btn');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => { outline.style.transform = 'translate(-50%, -50%) scale(1.6)'; outline.style.borderColor = '#ffd700'; });
-            el.addEventListener('mouseleave', () => { outline.style.transform = 'translate(-50%, -50%) scale(1)'; outline.style.borderColor = '#00d9ff'; });
+
+        // Mobile Menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
-    }
 
-    // Mobile menu toggle
-    document.querySelector('.hamburger')?.addEventListener('click', () => document.querySelector('.nav-links')?.classList.toggle('active'));
-    document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.querySelector('.nav-links')?.classList.remove('active')));
-    document.getElementById('reviewsNavBtn')?.addEventListener('click', (e) => { e.preventDefault(); openReviewsOverlay(); });
-    document.getElementById('contactForm')?.addEventListener('submit', handleFormSubmit);
-    document.getElementById('chatInputField')?.addEventListener('keypress', handleChatEnter);
-    
-    // Progress bar
-    window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - window.innerHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.querySelector('.scroll-progress').style.width = scrolled + '%';
-    });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
 
-    renderPortfolioItems();
-    showShortTestimonials();
-</script>
+        // ==================== INITIALIZE ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPortfolio();
+        });
+    </script>
 </body>
 </html>
