@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEVI - AI-Powered Websites | Premium Web Solutions for Growth</title>
+    <title>DEVI - AI-Powered Websites | Transform Your Business</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Clash+Display:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -22,7 +22,6 @@
             --accent-gold: #ffd700;
             --accent-cyan: #00d9ff;
             --accent-purple: #a855f7;
-            --accent-lime: #84cc16;
             --text-primary: #ffffff;
             --text-secondary: #b0b5c1;
             --border-color: rgba(255, 215, 0, 0.1);
@@ -41,19 +40,6 @@
             position: relative;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
-            animation: moveGradient 20s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
         /* Custom Cursor */
         .cursor {
             position: fixed;
@@ -65,7 +51,7 @@
             z-index: 9999;
             mix-blend-mode: lighten;
             transform: translate(-50%, -50%);
-            transition: all 0.15s ease-out;
+            transition: all 0.1s ease-out;
         }
 
         .cursor.active {
@@ -84,12 +70,6 @@
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
-            transition: all 0.1s ease-out;
-        }
-
-        @keyframes moveGradient {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
         }
 
         /* Scroll Progress */
@@ -120,9 +100,9 @@
         }
 
         .nav-brand {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: -1px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -2px;
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -179,9 +159,9 @@
             transition: var(--transition);
         }
 
-        /* Hero Section */
+        /* Hero Section - STUNNING 3D BANNER */
         .hero {
-            min-height: 100vh;
+            min-height: 110vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -191,7 +171,6 @@
             overflow: hidden;
         }
 
-        /* Animated Hero Background */
         .hero-bg {
             position: absolute;
             width: 100%;
@@ -201,94 +180,192 @@
             z-index: 1;
         }
 
-        .floating-orb {
+        /* 3D Animated Cubes */
+        .floating-cube {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            animation: float-cube 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2), inset 0 0 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .cube-1 {
+            top: 5%;
+            right: 10%;
+            animation: float-cube 8s ease-in-out infinite;
+        }
+
+        .cube-2 {
+            bottom: 10%;
+            left: 5%;
+            animation: float-cube 10s ease-in-out infinite;
+            animation-delay: -2s;
+        }
+
+        .cube-3 {
+            top: 50%;
+            right: 3%;
+            width: 120px;
+            height: 120px;
+            animation: float-cube 12s ease-in-out infinite;
+            animation-delay: -4s;
+        }
+
+        @keyframes float-cube {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(-50px) rotateX(20deg) rotateY(20deg);
+                opacity: 1;
+            }
+        }
+
+        /* Glowing Orbs */
+        .glow-orb {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.8;
-            filter: blur(80px);
+            filter: blur(60px);
+            animation: glow-pulse 4s ease-in-out infinite;
         }
 
-        .orb-1 {
+        .orb-gold {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+        }
+
+        .orb-cyan {
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
-            top: -250px;
-            right: 10%;
-            animation: float-orb1 8s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.25) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -1s;
         }
 
-        .orb-2 {
+        .orb-purple {
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
-            bottom: -200px;
-            left: 5%;
-            animation: float-orb2 10s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+            top: 30%;
+            right: 5%;
+            animation-delay: -2s;
         }
 
-        .orb-3 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-            top: 50%;
-            right: -100px;
-            animation: float-orb3 12s ease-in-out infinite;
+        @keyframes glow-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.2);
+                opacity: 1;
+            }
         }
 
-        @keyframes float-orb1 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
-        }
-
-        @keyframes float-orb2 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-30px, -30px); }
-        }
-
-        @keyframes float-orb3 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-50px, 30px); }
-        }
-
-        /* Grid Pattern Background */
-        .grid-pattern {
+        /* Floating Animated Stats */
+        .floating-stats {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
-            background-size: 100px 100px;
-            opacity: 0.5;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .stat-box {
+            position: absolute;
+            background: rgba(20, 25, 45, 0.6);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            backdrop-filter: blur(20px);
+            animation: stat-float 6s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-box-1 {
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .stat-box-2 {
+            top: 60%;
+            right: 8%;
+            animation-delay: -2s;
+        }
+
+        .stat-box-3 {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: -4s;
+        }
+
+        @keyframes stat-float {
+            0%, 100% { 
+                transform: translateY(0px);
+                background: rgba(20, 25, 45, 0.6);
+            }
+            50% { 
+                transform: translateY(-20px);
+                background: rgba(20, 25, 45, 0.8);
+                box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
+            }
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
-            max-width: 1000px;
+            z-index: 3;
+            max-width: 900px;
             text-align: center;
         }
 
         .hero-label {
             display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--border-color);
+            padding: 0.7rem 1.8rem;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1.5px solid var(--accent-gold);
             border-radius: 50px;
             color: var(--accent-gold);
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
             margin-bottom: 2rem;
             animation: slideDown 0.8s ease-out;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            font-weight: 700;
-            line-height: 1.1;
+            font-size: clamp(2.5rem, 12vw, 6rem);
+            font-weight: 800;
+            line-height: 1.05;
             margin-bottom: 1.5rem;
             font-family: 'Clash Display', sans-serif;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
             animation: slideDown 0.8s ease-out 0.1s both;
         }
 
@@ -297,16 +374,22 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: glow-text 3s ease-in-out infinite;
+        }
+
+        @keyframes glow-text {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(0, 217, 255, 0.3)); }
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.6;
+            line-height: 1.7;
             animation: slideDown 0.8s ease-out 0.2s both;
         }
 
@@ -330,11 +413,11 @@
         }
 
         .btn {
-            padding: 1.1rem 2.8rem;
+            padding: 1.2rem 3rem;
             border: 2px solid var(--accent-gold);
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 15px;
+            font-size: 1.05rem;
+            font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
             position: relative;
@@ -344,6 +427,7 @@
             align-items: center;
             gap: 0.8rem;
             font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
         }
 
         .btn::before {
@@ -359,27 +443,29 @@
         }
 
         .btn-primary {
-            background: var(--accent-gold);
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #ffed4e 100%);
             color: var(--bg-dark);
             border: 2px solid var(--accent-gold);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
-            color: var(--bg-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+            letter-spacing: 1px;
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(255, 215, 0, 0.08);
             color: var(--accent-gold);
             border: 2px solid var(--accent-gold);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.1);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 215, 0, 0.1);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
+            background: rgba(255, 215, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.2);
         }
 
         /* Section Styling */
@@ -395,25 +481,26 @@
 
         .section-label {
             display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: rgba(255, 215, 0, 0.08);
-            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.4rem;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1.5px solid var(--accent-gold);
             border-radius: 50px;
             color: var(--accent-gold);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            line-height: 1.15;
             font-family: 'Clash Display', sans-serif;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
         }
 
         .section-title span {
@@ -426,39 +513,40 @@
         .section-subtitle {
             font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         /* Solutions Section */
         .solutions {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, rgba(10, 13, 26, 0) 0%, rgba(20, 25, 45, 0.3) 100%);
+            padding: 7rem 2rem;
+            background: linear-gradient(180deg, rgba(10, 13, 26, 0) 0%, rgba(20, 25, 45, 0.4) 100%);
         }
 
         .solutions-container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .solutions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
             gap: 2.5rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .solution-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(30, 35, 60, 0.6) 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.15);
+            border-radius: 25px;
             padding: 3rem 2.5rem;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
             text-align: center;
+            cursor: pointer;
         }
 
         .solution-card::before {
@@ -468,7 +556,7 @@
             right: -50%;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             opacity: 0;
             transition: opacity 0.5s ease;
@@ -476,8 +564,9 @@
 
         .solution-card:hover {
             border-color: var(--accent-gold);
-            transform: translateY(-15px);
-            background: rgba(20, 25, 45, 1);
+            transform: translateY(-20px);
+            background: linear-gradient(135deg, rgba(20, 25, 45, 1) 0%, rgba(30, 35, 60, 0.8) 100%);
+            box-shadow: 0 30px 60px rgba(255, 215, 0, 0.15);
         }
 
         .solution-card:hover::before {
@@ -485,111 +574,96 @@
         }
 
         .card-icon {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
             display: inline-flex;
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(0, 217, 255, 0.15) 100%);
-            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(0, 217, 255, 0.15) 100%);
+            border-radius: 20px;
             color: var(--accent-gold);
             position: relative;
             z-index: 2;
+            transition: var(--transition);
+        }
+
+        .solution-card:hover .card-icon {
+            transform: scale(1.15) rotate(10deg);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(0, 217, 255, 0.25) 100%);
         }
 
         .solution-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 1.2rem;
             position: relative;
             z-index: 2;
+            letter-spacing: -0.5px;
         }
 
         .solution-card p {
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.8;
             position: relative;
             z-index: 2;
-            font-size: 0.95rem;
-        }
-
-        /* AI Features Section */
-        .ai-features {
-            padding: 6rem 2rem;
-        }
-
-        .ai-container {
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .feature-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .feature-box:hover {
-            border-color: var(--accent-cyan);
-            transform: translateY(-8px);
-            background: rgba(20, 25, 45, 1);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-box h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        .feature-box p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.98rem;
         }
 
         /* Portfolio Section */
         .portfolio {
-            padding: 6rem 2rem;
+            padding: 7rem 2rem;
+            background: linear-gradient(180deg, rgba(20, 25, 45, 0.4) 0%, rgba(10, 13, 26, 0) 100%);
         }
 
         .portfolio-container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .portfolio-filters {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.9rem 2rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.05);
+            color: var(--text-light);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--accent-gold);
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.25);
+            transform: translateY(-3px);
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
 
         .portfolio-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(30, 35, 60, 0.6) 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.15);
+            border-radius: 25px;
             overflow: hidden;
             transition: var(--transition);
             cursor: pointer;
@@ -602,20 +676,20 @@
 
         .portfolio-card:hover {
             border-color: var(--accent-gold);
-            transform: translateY(-15px);
-            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.2);
+            transform: translateY(-20px);
+            box-shadow: 0 40px 80px rgba(255, 215, 0, 0.2);
         }
 
         .portfolio-image {
             width: 100%;
-            height: 240px;
+            height: 280px;
             background: linear-gradient(135deg, #1a3a3f 0%, #2d1b3d 50%, #3d1f2a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            font-size: 5rem;
+            font-size: 6rem;
         }
 
         .portfolio-image-content {
@@ -627,6 +701,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover .portfolio-image-content {
+            transform: scale(1.3) rotate(5deg);
         }
 
         .portfolio-image::before {
@@ -643,21 +722,8 @@
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
-        .portfolio-image::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 13, 26, 0);
-            transition: var(--transition);
-        }
-
-        .portfolio-card:hover .portfolio-image::after {
-            background: rgba(10, 13, 26, 0.2);
-        }
-
         .portfolio-content {
-            padding: 2.2rem;
+            padding: 2.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -665,28 +731,31 @@
 
         .portfolio-tag {
             display: inline-block;
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.15);
             color: var(--accent-gold);
-            padding: 0.4rem 1rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             width: fit-content;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .portfolio-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
 
         .portfolio-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+            font-size: 0.98rem;
+            line-height: 1.8;
+            margin-bottom: 1.8rem;
             flex-grow: 1;
         }
 
@@ -699,22 +768,25 @@
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             text-decoration: none;
             font-weight: 700;
-            padding: 0.9rem 1.8rem;
-            border-radius: 10px;
+            padding: 1rem 2rem;
+            border-radius: 12px;
             transition: var(--transition);
             width: fit-content;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            letter-spacing: 0.5px;
         }
 
         .portfolio-link:hover {
-            transform: translateX(5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25);
+            transform: translateX(8px) translateY(-3px);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
             color: var(--bg-dark);
         }
 
         /* CTA Section */
         .cta-section {
-            padding: 6rem 2rem;
+            padding: 7rem 2rem;
             text-align: center;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(0, 217, 255, 0.03) 100%);
         }
 
         .cta-content {
@@ -723,18 +795,18 @@
         }
 
         .cta-section h2 {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 1.5rem;
             font-family: 'Clash Display', sans-serif;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }
 
         .cta-section p {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 3rem;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .cta-buttons {
@@ -746,64 +818,63 @@
 
         /* Testimonials */
         .testimonials {
-            padding: 6rem 2rem;
+            padding: 7rem 2rem;
             background: linear-gradient(180deg, rgba(20, 25, 45, 0.3) 0%, rgba(10, 13, 26, 0) 100%);
         }
 
         .testimonials-container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
             gap: 2.5rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .testimonial-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 3rem;
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(30, 35, 60, 0.6) 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.15);
+            border-radius: 25px;
+            padding: 3.5rem;
+            backdrop-filter: blur(15px);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .testimonial-card::before {
             content: '"';
             position: absolute;
-            top: -20px;
+            top: -30px;
             right: 20px;
-            font-size: 6rem;
+            font-size: 7rem;
             color: var(--accent-gold);
-            opacity: 0.1;
+            opacity: 0.08;
         }
 
         .testimonial-card:hover {
             border-color: var(--accent-gold);
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(255, 215, 0, 0.15);
         }
 
         .testimonial-rating {
             display: flex;
-            gap: 0.3rem;
+            gap: 0.4rem;
             margin-bottom: 1.5rem;
             color: var(--accent-gold);
-        }
-
-        .testimonial-rating i {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .testimonial-text {
             color: var(--text-light);
-            line-height: 1.8;
-            font-size: 1rem;
-            margin-bottom: 2rem;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
             font-style: italic;
             position: relative;
             z-index: 2;
@@ -812,14 +883,14 @@
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
             position: relative;
             z-index: 2;
         }
 
         .author-avatar {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             display: flex;
@@ -827,13 +898,15 @@
             justify-content: center;
             color: var(--bg-dark);
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         }
 
         .author-info h4 {
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.2rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.5px;
         }
 
         .author-info p {
@@ -841,124 +914,10 @@
             font-size: 0.9rem;
         }
 
-        /* Reviews Modal */
-        .reviews-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 6, 9, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            overflow-y: auto;
-        }
-
-        .reviews-modal.active {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .reviews-content {
-            max-width: 900px;
-            width: 100%;
-            margin-top: 2rem;
-        }
-
-        .reviews-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .reviews-close {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
-            border: none;
-            color: var(--bg-dark);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 2001;
-        }
-
-        .reviews-close:hover {
-            transform: scale(1.1) rotate(90deg);
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .review-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-
-        .review-card:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-8px);
-        }
-
-        .review-rating {
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-        }
-
-        .review-text {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .review-author {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .review-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-dark);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .review-info h5 {
-            font-weight: 700;
-            margin-bottom: 0.2rem;
-        }
-
-        .review-info p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
         /* Contact Section */
         .contact {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, rgba(20, 25, 45, 0.3) 0%, rgba(10, 13, 26, 0) 100%);
+            padding: 7rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(0, 217, 255, 0.03) 100%);
         }
 
         .contact-container {
@@ -967,35 +926,37 @@
         }
 
         .contact-form {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 3.5rem;
-            backdrop-filter: blur(10px);
-            margin-top: 2rem;
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(30, 35, 60, 0.6) 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.15);
+            border-radius: 25px;
+            padding: 4rem;
+            backdrop-filter: blur(15px);
+            margin-top: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
 
         .form-group {
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
             font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1.1rem 1.2rem;
-            background: rgba(10, 13, 26, 0.5);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            background: rgba(10, 13, 26, 0.6);
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            border-radius: 15px;
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             transition: var(--transition);
             resize: none;
         }
@@ -1009,12 +970,12 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent-gold);
-            background: rgba(10, 13, 26, 0.7);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.15);
+            background: rgba(10, 13, 26, 0.8);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
         }
 
         .form-group textarea {
-            min-height: 150px;
+            min-height: 160px;
         }
 
         .form-actions {
@@ -1022,18 +983,19 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
         }
 
         .form-success {
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid #10b981;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1.5px solid #10b981;
             color: #10b981;
-            padding: 1rem;
-            border-radius: 10px;
+            padding: 1.2rem;
+            border-radius: 15px;
             text-align: center;
             display: none;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
         .form-success.show {
@@ -1043,9 +1005,9 @@
 
         /* Footer */
         footer {
-            padding: 4rem 2rem 2rem;
-            background: rgba(10, 13, 26, 0.9);
-            border-top: 1px solid var(--border-color);
+            padding: 4.5rem 2rem 2.5rem;
+            background: rgba(10, 13, 26, 0.95);
+            border-top: 1.5px solid rgba(255, 215, 0, 0.1);
             text-align: center;
         }
 
@@ -1056,9 +1018,9 @@
 
         .footer-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
             justify-content: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
 
@@ -1067,45 +1029,50 @@
             text-decoration: none;
             transition: var(--transition);
             font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         .footer-links a:hover {
             color: var(--accent-gold);
+            transform: translateY(-3px);
         }
 
         .footer-socials {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.8rem;
             justify-content: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .footer-socials a {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(255, 215, 0, 0.12);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent-gold);
             transition: var(--transition);
             text-decoration: none;
-            border: 2px solid rgba(255, 215, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.25);
+            font-size: 1.2rem;
         }
 
         .footer-socials a:hover {
             background: var(--accent-gold);
             color: var(--bg-dark);
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.1);
             border-color: var(--accent-gold);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
         }
 
         .footer-bottom {
             color: var(--text-secondary);
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
             padding-top: 2rem;
             font-size: 0.9rem;
+            letter-spacing: 0.3px;
         }
 
         /* Chatbot */
@@ -1113,41 +1080,42 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             border: none;
-            border-radius: 16px;
+            border-radius: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             z-index: 998;
             transition: var(--transition);
-            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.25);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
             color: var(--bg-dark);
+            font-weight: 800;
         }
 
         .chatbot-button:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.35);
+            transform: scale(1.15) translateY(-8px);
+            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.4);
         }
 
         .chatbot-window {
             position: fixed;
-            bottom: 8rem;
+            bottom: 9rem;
             right: 2rem;
-            width: 400px;
-            max-height: 600px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            width: 420px;
+            max-height: 650px;
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.95) 0%, rgba(30, 35, 60, 0.9) 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
             backdrop-filter: blur(20px);
             display: none;
             flex-direction: column;
             z-index: 998;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
             animation: slideUpChat 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -1169,21 +1137,22 @@
         .chatbot-header {
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             color: var(--bg-dark);
-            padding: 1.5rem;
-            border-radius: 20px 20px 0 0;
+            padding: 1.8rem;
+            border-radius: 25px 25px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 700;
+            font-size: 1.1rem;
         }
 
         .chatbot-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 1.5rem;
+            padding: 1.8rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .message {
@@ -1202,22 +1171,19 @@
         }
 
         .message.bot {
-            background: rgba(255, 215, 0, 0.08);
+            background: rgba(255, 215, 0, 0.1);
             border-left: 4px solid var(--accent-gold);
-            padding: 1rem;
-            border-radius: 12px;
+            padding: 1.2rem;
+            border-radius: 15px;
             color: var(--text-light);
             text-align: left;
-            min-height: 50px;
-            display: flex;
-            align-items: flex-start;
         }
 
         .message.user {
-            background: rgba(0, 217, 255, 0.08);
+            background: rgba(0, 217, 255, 0.1);
             border-left: 4px solid var(--accent-cyan);
-            padding: 1rem;
-            border-radius: 12px;
+            padding: 1.2rem;
+            border-radius: 15px;
             color: var(--text-light);
             text-align: right;
             margin-left: auto;
@@ -1225,80 +1191,197 @@
         }
 
         .chatbot-input {
-            padding: 1.2rem;
+            padding: 1.5rem;
             display: flex;
-            gap: 0.8rem;
-            border-top: 1px solid var(--border-color);
+            gap: 1rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.15);
         }
 
         .chatbot-input input {
             flex: 1;
             background: rgba(10, 13, 26, 0.7);
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
             color: var(--text-primary);
-            padding: 0.9rem 1rem;
+            padding: 1rem 1.2rem;
             font-family: 'Inter', sans-serif;
             transition: var(--transition);
+            font-size: 0.95rem;
         }
 
         .chatbot-input input:focus {
             outline: none;
             border-color: var(--accent-gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
         }
 
         .chatbot-input button {
             background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             color: var(--bg-dark);
             cursor: pointer;
-            width: 45px;
+            width: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
             font-weight: 700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
         }
 
         .chatbot-input button:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
         }
 
         .quick-replies {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 0.8rem;
-            padding: 1rem 1.2rem;
-            border-top: 1px solid var(--border-color);
+            gap: 0.9rem;
+            padding: 1.2rem 1.5rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.15);
         }
 
         .quick-reply {
             background: rgba(255, 215, 0, 0.08);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid rgba(255, 215, 0, 0.2);
             color: var(--accent-gold);
-            padding: 0.9rem 1rem;
-            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             text-align: left;
             font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .quick-reply:hover {
-            background: rgba(255, 215, 0, 0.15);
+            background: rgba(255, 215, 0, 0.2);
             border-color: var(--accent-gold);
-            transform: translateX(5px);
+            transform: translateX(6px);
+        }
+
+        /* Reviews Modal */
+        .reviews-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 6, 9, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .reviews-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .reviews-content {
+            max-width: 1000px;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .reviews-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            border: none;
+            color: var(--bg-dark);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2001;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.25);
+            font-weight: 800;
+        }
+
+        .reviews-close:hover {
+            transform: scale(1.15) rotate(90deg);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(30, 35, 60, 0.6) 100%);
+            border: 1.5px solid rgba(255, 215, 0, 0.15);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(15px);
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.15);
+        }
+
+        .review-rating {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.98rem;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-cyan) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .review-info h5 {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .review-info p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem;
-            }
-
             .nav-links {
                 display: none;
                 position: fixed;
@@ -1306,7 +1389,7 @@
                 top: 60px;
                 width: 100%;
                 flex-direction: column;
-                background: rgba(10, 13, 26, 0.95);
+                background: rgba(10, 13, 26, 0.98);
                 gap: 0;
                 padding: 2rem;
                 border-bottom: 1px solid var(--border-color);
@@ -1321,20 +1404,17 @@
             }
 
             .hero {
-                margin-top: 0;
+                min-height: 100vh;
                 padding-top: 60px;
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
 
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
+            .stat-box {
+                font-size: 0.9rem;
+                padding: 1.2rem 1.5rem;
             }
 
             .solutions-grid,
@@ -1347,7 +1427,6 @@
 
             .hero-buttons {
                 flex-direction: column;
-                gap: 1rem;
             }
 
             .btn {
@@ -1361,8 +1440,7 @@
 
             .chatbot-window {
                 width: 90%;
-                max-height: 70vh;
-                bottom: 6rem;
+                bottom: 5rem;
                 right: 1rem;
                 left: 1rem;
             }
@@ -1378,18 +1456,6 @@
             .form-actions .btn {
                 width: 100%;
             }
-
-            .reviews-modal.active {
-                padding: 1rem;
-            }
-
-            .reviews-close {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-                top: 1rem;
-                right: 1rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1397,23 +1463,31 @@
                 font-size: 1.8rem;
             }
 
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
             .chatbot-button {
-                width: 60px;
-                height: 60px;
-                font-size: 1.4rem;
+                width: 65px;
+                height: 65px;
+                font-size: 1.6rem;
             }
 
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .btn {
-                padding: 0.95rem 2rem;
-                font-size: 0.95rem;
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
             }
 
-            .contact-form {
-                padding: 2rem 1.5rem;
+            .floating-cube {
+                display: none;
+            }
+
+            .stat-box {
+                display: none;
             }
         }
     </style>
@@ -1428,9 +1502,8 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#solutions">Solutions</a></li>
-            <li><a href="#features">Features</a></li>
             <li><a href="#portfolio">Work</a></li>
-            <li><a href="#" onclick="openReviews(event)">Reviews</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="hamburger">
@@ -1443,11 +1516,33 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-bg">
-            <div class="grid-pattern"></div>
-            <div class="floating-orb orb-1"></div>
-            <div class="floating-orb orb-2"></div>
-            <div class="floating-orb orb-3"></div>
+            <!-- 3D Animated Cubes -->
+            <div class="floating-cube cube-1"></div>
+            <div class="floating-cube cube-2"></div>
+            <div class="floating-cube cube-3"></div>
+
+            <!-- Glowing Orbs -->
+            <div class="glow-orb orb-gold"></div>
+            <div class="glow-orb orb-cyan"></div>
+            <div class="glow-orb orb-purple"></div>
         </div>
+
+        <!-- Floating Stats -->
+        <div class="floating-stats">
+            <div class="stat-box stat-box-1">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Businesses Transformed</div>
+            </div>
+            <div class="stat-box stat-box-2">
+                <div class="stat-number">3-4x</div>
+                <div class="stat-label">Lead Increase</div>
+            </div>
+            <div class="stat-box stat-box-3">
+                <div class="stat-number">40%</div>
+                <div class="stat-label">Conversion Rate</div>
+            </div>
+        </div>
+
         <div class="hero-content">
             <div class="hero-label">
                 <i class="fas fa-sparkles"></i> AI-Powered Growth
@@ -1509,50 +1604,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="ai-features">
-        <div class="ai-container">
-            <div class="section-header">
-                <div class="section-label">Why Choose DEVI</div>
-                <h2 class="section-title"><span>AI-First Approach</span> to Growth</h2>
-                <p class="section-subtitle">We don't just build websites. We build intelligent systems that multiply your leads and revenue.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-                    <h4>Proven Track Record</h4>
-                    <p>Helped 100+ businesses increase leads by 200-400%. Real results, not promises.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-tools"></i></div>
-                    <h4>Done-For-You Setup</h4>
-                    <p>We handle everything. You get a turnkey system ready to generate leads from day one.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
-                    <h4>24/7 Automation</h4>
-                    <p>Your website works while you sleep. Capture leads, qualify them, and follow up automatically.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
-                    <h4>ROI Focused</h4>
-                    <p>Every feature is built to generate revenue. No fluff, just conversion-focused design.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-target"></i></div>
-                    <h4>Niche Expertise</h4>
-                    <p>Specialized in automotive, services, health, and travel. We know your industry inside out.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon"><i class="fas fa-arrow-up"></i></div>
-                    <h4>Growth Partnership</h4>
-                    <p>We're not done when we launch. We optimize, iterate, and scale your success together.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="portfolio-container">
@@ -1560,6 +1611,15 @@
                 <div class="section-label">Real Work. Real Results.</div>
                 <h2 class="section-title">Featured <span>Projects</span></h2>
                 <p class="section-subtitle">See how we've transformed businesses across different industries with AI-powered websites. Click any project to see it live.</p>
+            </div>
+
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="automotive">Automotive</button>
+                <button class="filter-btn" data-filter="services">Services</button>
+                <button class="filter-btn" data-filter="health">Health</button>
+                <button class="filter-btn" data-filter="finance">Finance</button>
+                <button class="filter-btn" data-filter="travel">Travel</button>
             </div>
 
             <div class="portfolio-grid" id="portfolioGrid">
@@ -1602,12 +1662,12 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"DEVI transformed our online presence completely. Their AI chatbot alone converts 40% of website visitors into qualified leads. Best investment we've made for our dealership."</p>
+                    <p class="testimonial-text">"DEVI transformed our online presence completely. Their AI chatbot alone converts 40% of website visitors into qualified leads. Best investment we've made."</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">SJ</div>
                         <div class="author-info">
                             <h4>Sarah Johnson</h4>
-                            <p>Auto Hub Motors - Dealership Owner</p>
+                            <p>Car Dealership - Owner</p>
                         </div>
                     </div>
                 </div>
@@ -1620,12 +1680,12 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"Their booking system cut our admin work by 80%. From 2 inquiries per month to 30+ every week. The automation is incredible and saves us so much time."</p>
+                    <p class="testimonial-text">"Their booking system cut our admin work by 80%. From 2 inquiries per month to 30+ every week. Incredible automation!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">MC</div>
                         <div class="author-info">
                             <h4>Mike Chen</h4>
-                            <p>Elite Fitness Center - Manager</p>
+                            <p>Fitness Center - Manager</p>
                         </div>
                     </div>
                 </div>
@@ -1638,20 +1698,20 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"From 2 inquiries a month to 30+. Their AI automation and modern design completely changed our business trajectory. We're now fully booked and have a waiting list!"</p>
+                    <p class="testimonial-text">"From 2 inquiries a month to 30+. Their AI automation and modern design changed our trajectory completely. Fully booked now!"</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">EW</div>
                         <div class="author-info">
                             <h4>Emma Wilson</h4>
-                            <p>Prime Daycare Services - Owner</p>
+                            <p>Daycare Services - Owner</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 3rem;">
+            <div style="text-align: center; margin-top: 4rem;">
                 <button class="btn btn-secondary" onclick="openReviews(event)">
-                    <i class="fas fa-star"></i> See All Reviews
+                    <i class="fas fa-star"></i> See All 10 Reviews
                 </button>
             </div>
         </div>
@@ -1705,7 +1765,7 @@
                 </div>
                 <div class="form-group">
                     <label for="message"><i class="fas fa-pencil"></i> Tell Us Your Goals</label>
-                    <textarea id="message" name="message" placeholder="What would you like your website to accomplish? How many leads do you want to generate?" required></textarea>
+                    <textarea id="message" name="message" placeholder="What would you like your website to accomplish?" required></textarea>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
@@ -1747,13 +1807,13 @@
     <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">
             <span><i class="fas fa-robot"></i> DEVI Assistant</span>
-            <button style="background: none; border: none; cursor: pointer; color: inherit; font-size: 1.3rem;" onclick="toggleChatbot()">
+            <button style="background: none; border: none; cursor: pointer; color: inherit; font-size: 1.3rem; font-weight: 800;" onclick="toggleChatbot()">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <div class="chatbot-messages" id="chatbotMessages">
             <div class="message bot">
-                <strong>Hey there! 👋</strong><br><br>I'm DEVI's AI assistant. I can help you understand how we build AI-powered websites that multiply your leads 3-4x. What would you like to know?
+                <strong>Hey there! 👋</strong><br><br>I'm DEVI's AI assistant. How can I help you today?
             </div>
         </div>
         <div class="quick-replies" id="quickReplies">
@@ -1792,7 +1852,6 @@
             cursor.style.top = mouseY + 'px';
         });
 
-        // Add active state on hover of clickable elements
         document.addEventListener('mouseover', (e) => {
             if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.classList.contains('portfolio-card')) {
                 cursor.classList.add('active');
@@ -1808,9 +1867,9 @@
         // ==================== PORTFOLIO DATA ====================
         const portfolioProjects = [
             {
-                title: 'UK Car Dealership Pro',
+                title: 'Car Dealership Pro',
                 category: 'automotive',
-                description: 'AI-powered dealership with intelligent lead qualification chatbot and automated follow-up system. 250% increase in qualified leads.',
+                description: 'AI-powered dealership with intelligent lead qualification chatbot. 250% increase in qualified leads.',
                 link: 'https://huxu0-dot.github.io/ukcardealershipdemo/',
                 icon: '<i class="fas fa-car"></i>',
                 color1: '#1a3a3f',
@@ -1819,16 +1878,16 @@
             {
                 title: 'Premium Auto Sales',
                 category: 'automotive',
-                description: 'Luxury dealership platform with virtual showroom, AI chatbot, and automated booking. 180% more test drive bookings.',
+                description: 'Luxury dealership platform with virtual showroom and AI chatbot. 180% more test drive bookings.',
                 link: 'https://huxu0-dot.github.io/cardealershipdemo/',
                 icon: '<i class="fas fa-car-side"></i>',
                 color1: '#3d1f1f',
                 color2: '#2d3d1f'
             },
             {
-                title: 'UK Daycare Center',
+                title: 'Daycare Center',
                 category: 'services',
-                description: 'Child daycare website with enrollment automation, parent portal, and 24/7 inquiry chatbot. 320% more inquiries.',
+                description: 'Child daycare website with enrollment automation and 24/7 inquiry chatbot. 320% more inquiries.',
                 link: 'https://huxu0-dot.github.io/ukdaycaredemo/',
                 icon: '<i class="fas fa-children"></i>',
                 color1: '#1f2d3d',
@@ -1837,16 +1896,16 @@
             {
                 title: 'Tax Advisory Services',
                 category: 'finance',
-                description: 'Professional tax services site with AI consultation scheduling and automated lead qualification. 290% more consultations.',
+                description: 'Professional tax services site with AI consultation scheduling. 290% more consultations.',
                 link: 'https://huxu0-dot.github.io/uktaxadvisorwebdemo/',
                 icon: '<i class="fas fa-calculator"></i>',
                 color1: '#2d3d1f',
                 color2: '#3d1f2d'
             },
             {
-                title: 'Elite Fitness Center',
+                title: 'Fitness Center',
                 category: 'health',
-                description: 'Gym website with AI membership chatbot, class scheduling, and automated trial booking. 400% more memberships.',
+                description: 'Gym website with AI membership chatbot and automated trial booking. 400% more memberships.',
                 link: 'https://huxu0-dot.github.io/ukgymdemo/',
                 icon: '<i class="fas fa-dumbbell"></i>',
                 color1: '#1f3d2d',
@@ -1855,7 +1914,7 @@
             {
                 title: 'Mental Health Services',
                 category: 'health',
-                description: 'Therapy services platform with appointment automation, AI support chatbot, and resource library. 350% more bookings.',
+                description: 'Therapy services platform with appointment automation and AI support chatbot. 350% more bookings.',
                 link: 'https://huxu0-dot.github.io/ukMentalhealth-therapyservices-demo/',
                 icon: '<i class="fas fa-heart"></i>',
                 color1: '#2d1f3d',
@@ -1864,7 +1923,7 @@
             {
                 title: 'Home Renovation Co.',
                 category: 'services',
-                description: 'Construction company site with project gallery, AI quote generator, and appointment scheduling. 310% more inquiries.',
+                description: 'Construction company site with project gallery and AI quote generator. 310% more inquiries.',
                 link: 'https://huxu0-dot.github.io/ukhomerenovatorsdemo/',
                 icon: '<i class="fas fa-hammer"></i>',
                 color1: '#3d1f1f',
@@ -1873,7 +1932,7 @@
             {
                 title: 'Travel Agency Platform',
                 category: 'travel',
-                description: 'Travel booking platform with AI destination recommendations and automated booking system. 280% more bookings.',
+                description: 'Travel booking platform with AI destination recommendations. 280% more bookings.',
                 link: 'https://huxu0-dot.github.io/uktravelagenciesdemo/',
                 icon: '<i class="fas fa-plane"></i>',
                 color1: '#1f2d3d',
@@ -1885,86 +1944,89 @@
         const allReviews = [
             {
                 name: 'Sarah Johnson',
-                role: 'Auto Hub Motors - Dealership Owner',
-                text: 'DEVI transformed our online presence completely. Their AI chatbot alone converts 40% of website visitors into qualified leads. Best investment we\'ve made.',
+                role: 'Car Dealership - Owner',
+                text: 'DEVI transformed our online presence. AI chatbot converts 40% of visitors into leads. Best investment ever!',
                 avatar: 'SJ',
                 rating: 5
             },
             {
                 name: 'Mike Chen',
-                role: 'Elite Fitness Center - Manager',
-                text: 'Their booking system cut our admin work by 80%. From 2 inquiries per month to 30+ every week. The automation is incredible.',
+                role: 'Fitness Center - Manager',
+                text: 'Booking system cut admin work by 80%. From 2 to 30+ inquiries weekly. Incredible automation!',
                 avatar: 'MC',
                 rating: 5
             },
             {
                 name: 'Emma Wilson',
-                role: 'Prime Daycare Services - Owner',
-                text: 'From 2 inquiries a month to 30+. Their AI automation and modern design completely changed our business trajectory.',
+                role: 'Daycare Services - Owner',
+                text: 'From 2 inquiries monthly to 30+ weekly. AI automation and design changed our trajectory completely!',
                 avatar: 'EW',
                 rating: 5
             },
             {
                 name: 'David Martinez',
                 role: 'Premium Auto Sales - Manager',
-                text: 'The website looks amazing and our customers are loving it. We\'ve seen a massive increase in online inquiries and bookings.',
+                text: 'Website looks amazing. Massive increase in online inquiries and bookings. Highly professional team!',
                 avatar: 'DM',
                 rating: 5
             },
             {
                 name: 'Lisa Anderson',
                 role: 'Wellness Therapy Center - Director',
-                text: 'Incredibly professional team. They understood our industry and built exactly what we needed. Highly recommended!',
+                text: 'Professional team. They understood our industry perfectly and built exactly what we needed!',
                 avatar: 'LA',
                 rating: 5
             },
             {
                 name: 'James Wilson',
                 role: 'Home Renovation - Owner',
-                text: 'Our inquiries tripled in the first month. The AI chatbot is handling lead qualification better than we could manually.',
+                text: 'Inquiries tripled in month one. AI chatbot qualifies leads better than we could manually!',
                 avatar: 'JW',
                 rating: 5
             },
             {
                 name: 'Rachel Green',
                 role: 'Travel Agency - CEO',
-                text: 'Best digital investment we\'ve made. Our booking conversions increased by 340%. The team was fantastic to work with.',
+                text: 'Best digital investment ever. Booking conversions increased 340%. Fantastic team to work with!',
                 avatar: 'RG',
                 rating: 5
             },
             {
                 name: 'Tom Brady',
                 role: 'Tax Advisory Firm - Partner',
-                text: 'Professional, responsive, and results-driven. They delivered exactly what they promised and more. Thank you DEVI!',
+                text: 'Professional, responsive, results-driven. Delivered exactly what promised and more. Thank you!',
                 avatar: 'TB',
                 rating: 5
             },
             {
                 name: 'Jessica Lee',
                 role: 'Fitness Plus - Owner',
-                text: 'The website automatically captures leads 24/7. We now focus on sales instead of lead generation. Game changer!',
+                text: 'Website captures leads 24/7 automatically. We focus on sales now, not lead generation!',
                 avatar: 'JL',
                 rating: 5
             },
             {
                 name: 'Michael Brown',
                 role: 'Auto Dealership - Manager',
-                text: 'Exceeded all expectations. The modern design and AI features have made a huge impact on our business growth.',
+                text: 'Exceeded expectations. Modern design and AI features had huge impact on business growth!',
                 avatar: 'MB',
                 rating: 5
             },
         ];
 
         // ==================== RENDER PORTFOLIO ====================
-        function renderPortfolio() {
+        function renderPortfolio(filter = 'all') {
             const grid = document.getElementById('portfolioGrid');
             grid.innerHTML = '';
 
-            portfolioProjects.forEach((project, index) => {
+            const filtered = filter === 'all' 
+                ? portfolioProjects 
+                : portfolioProjects.filter(p => p.category === filter);
+
+            filtered.forEach((project, index) => {
                 const card = document.createElement('div');
                 card.className = 'portfolio-card';
                 card.style.animation = `slideDown 0.6s ease-out ${index * 0.08}s both`;
-                card.style.cursor = 'pointer';
                 
                 card.innerHTML = `
                     <div class="portfolio-image" style="background: linear-gradient(135deg, ${project.color1} 0%, ${project.color2} 100%);">
@@ -1987,6 +2049,19 @@
                 grid.appendChild(card);
             });
         }
+
+        // ==================== FILTER BUTTONS ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPortfolio();
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderPortfolio(btn.getAttribute('data-filter'));
+                });
+            });
+        });
 
         // ==================== RENDER REVIEWS ====================
         function renderReviews() {
@@ -2016,19 +2091,19 @@
             });
         }
 
-        // ==================== ADVANCED CHATBOT ====================
+        // ==================== CHATBOT ====================
         const chatbotResponses = {
-            'what services do you offer?': 'We offer comprehensive AI-powered web solutions: AI-Smart Website Design, Booking System Integration with 24/7 automation, AI Chatbots that convert 40%+ of visitors, Business Automation for email campaigns and follow-ups, Real-time Analytics Dashboards, and CRM Integration. Everything is designed to multiply your leads and revenue.',
-            'how much does it cost?': 'Our pricing is flexible and depends on your specific needs. Basic AI-powered websites start at competitive rates, while full automation packages with advanced AI chatbots and booking systems range based on features. We customize packages for each business. The average client sees ROI within 30-60 days. Let\'s discuss your goals to provide exact pricing.',
-            'can i see a demo?': 'Absolutely! We create completely FREE custom demo websites for serious businesses. You\'ll see exactly what your AI-powered website will look like, including your brand colors, messaging, and specific features. No credit card required, no hidden fees. Just fill out the contact form and we\'ll send your demo within 24 hours.',
-            'how long does it take?': 'Our proven process works fast: We create your demo in 1 week. Once you approve it, your full AI-powered website launches in 3-4 weeks. We move quickly because we want your business generating leads ASAP. Throughout the process, you\'re involved and can request changes.',
-            'services & solutions': 'DEVI specializes in: Website Design (AI-optimized for conversions), Booking Systems (fully automated 24/7), AI Chatbots (40%+ conversion rates), Business Automation (save 20+ hours/week), Analytics (real-time dashboards), and CRM Integration. All tailored to YOUR specific business growth goals.',
-            'pricing & investment': 'Pricing varies based on features and complexity. Standard AI websites, custom automation, premium chatbots - each has different investment levels. The good news: most clients see 3-4x ROI within 60 days. Schedule a quick consultation and we\'ll create a custom package within your budget.',
-            'free demo website': 'Yes! Get a completely FREE custom demo website. See your brand, your services, your messaging - everything customized. No credit card, no commitment. Just tell us about your business and we\'ll deliver your demo within 24 hours. It\'s the best way to see exactly what we can do for you.',
-            'timeline & process': 'Here\'s our proven timeline: Week 1 - Analysis and demo creation. Weeks 2-4 - Full website development and AI setup. Throughout - You approve everything before we proceed. Upon launch - We train you and provide 30 days of support. We move fast without cutting corners.',
+            'what services do you offer?': 'We offer: AI-Smart Website Design, Booking System Integration with 24/7 automation, AI Chatbots (40%+ conversion), Business Automation, Analytics Dashboards, and CRM Integration. Everything designed to multiply your leads and revenue!',
+            'how much does it cost?': 'Pricing is flexible based on your needs. Basic AI websites start competitive, while full automation packages vary. Most clients see 3-4x ROI within 60 days. Let\'s discuss your goals for exact pricing!',
+            'can i see a demo?': 'Absolutely! We create FREE custom demo websites. See your brand, services, messaging - everything customized. No credit card needed. Fill the contact form and get your demo within 24 hours!',
+            'how long does it take?': 'Demo in 1 week. Full website in 3-4 weeks. We move fast because we want your business generating leads ASAP. You approve everything before we proceed!',
+            'services & solutions': 'AI-Smart Websites, Booking Systems, AI Chatbots, Business Automation, Analytics, CRM Integration - all tailored to YOUR business growth goals!',
+            'pricing & investment': 'Flexible pricing. Standard websites, custom automation, premium chatbots - each has different levels. Most see 3-4x ROI within 60 days!',
+            'free demo website': 'Yes! Get completely FREE custom demo website. No credit card, no commitment. Just tell us about your business!',
+            'timeline & process': 'Week 1: Analysis & demo. Weeks 2-4: Development & AI setup. You approve everything. Upon launch: Training & 30 days support!',
         };
 
-        function typeMessage(element, text, speed = 30) {
+        function typeMessage(element, text, speed = 25) {
             element.textContent = '';
             let index = 0;
             
@@ -2039,14 +2114,12 @@
                     setTimeout(type, speed);
                 }
             }
-            
             type();
         }
 
         function toggleChatbot() {
-            const chatbotWindow = document.getElementById('chatbotWindow');
-            chatbotWindow.classList.toggle('active');
-            if (chatbotWindow.classList.contains('active')) {
+            document.getElementById('chatbotWindow').classList.toggle('active');
+            if (document.getElementById('chatbotWindow').classList.contains('active')) {
                 document.getElementById('chatInput').focus();
             }
         }
@@ -2061,7 +2134,7 @@
             document.getElementById('quickReplies').style.display = 'none';
             setTimeout(() => {
                 const response = chatbotResponses[message.toLowerCase()] || 
-                    "That's a great question! 🎯 Our AI specialists would love to discuss your specific needs. Would you like to schedule a quick call to explore how we can help your business grow?";
+                    "Great question! 🎯 Our AI specialists would love to discuss your needs. Ready to schedule a call?";
                 addMessage('bot', response, true);
             }, 800);
         }
@@ -2083,7 +2156,7 @@
                 
                 setTimeout(() => {
                     const response = chatbotResponses[message.toLowerCase()] || 
-                        "That's an excellent question! 🎯 I'd like to connect you with our team for a detailed discussion. They can provide personalized recommendations based on your specific business needs and goals. Ready to grow?";
+                        "Excellent question! 🎯 Let me connect you with our team for personalized recommendations. Ready to grow?";
                     addMessage('bot', response, true);
                 }, 800);
             }
@@ -2116,9 +2189,7 @@
         }
 
         document.getElementById('reviewsModal').addEventListener('click', (e) => {
-            if (e.target.id === 'reviewsModal') {
-                closeReviews();
-            }
+            if (e.target.id === 'reviewsModal') closeReviews();
         });
 
         // ==================== CONTACT FORM ====================
@@ -2131,35 +2202,29 @@
             const business = document.getElementById('business').value;
             const message = document.getElementById('message').value;
 
-            // Store form data in localStorage for demonstration
             const formData = {
                 name, email, phone, business, message,
-                timestamp: new Date().toLocaleString(),
-                ip: 'User tracking enabled'
+                timestamp: new Date().toLocaleString()
             };
 
             localStorage.setItem('devi_contact_' + Date.now(), JSON.stringify(formData));
             console.log('Contact Form Data:', formData);
 
-            // Show success message
             const successDiv = document.getElementById('formSuccess');
             successDiv.classList.add('show');
 
-            // Show confirmation in chatbot
             addMessage('user', `Hi! I'm ${name} from ${business}.`);
             setTimeout(() => {
-                addMessage('bot', `Perfect! 🎉 Thanks ${name}. We've received your information and will send your custom demo website to ${email} within 24 hours. Get ready to see your AI-powered growth machine in action! 🚀`, true);
+                addMessage('bot', `Perfect! 🎉 Thanks ${name}. We'll send your custom demo to ${email} within 24 hours. Get ready to see your growth machine! 🚀`, true);
             }, 600);
 
             document.querySelector('.contact-form').reset();
             openChatbot();
 
-            setTimeout(() => {
-                successDiv.classList.remove('show');
-            }, 5000);
+            setTimeout(() => successDiv.classList.remove('show'), 5000);
         }
 
-        // ==================== UTILITY FUNCTIONS ====================
+        // ==================== UTILITY ====================
         function scrollToContact() {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         }
@@ -2187,11 +2252,6 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
-        });
-
-        // ==================== INITIALIZE ====================
-        document.addEventListener('DOMContentLoaded', () => {
-            renderPortfolio();
         });
     </script>
 </body>
